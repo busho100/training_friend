@@ -6,12 +6,16 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
+    data = Friend.objects.all()
     context ={
         'title':'Hello Friend',
         'massage':'all friends',
-        'data':[],
+        'data': data,
     }
-    ''' if (request.method == 'POST'):
+    return render(request, 'friends/index.html', context)
+
+    '''
+     if (request.method == 'POST'):
         num = request.POST['id']
         item = Friend.objects.get(id=num)
         context['data'] = [item]
@@ -19,7 +23,7 @@ def index(request):
     else:
         context['data'] = Friend.objects.all() 
 
-    return render(request, 'friends/index.html', context)'''
+    return render(request, 'friends/index.html', context)
 
     def create(request):
         context = {
@@ -38,3 +42,4 @@ def index(request):
             friend.save()
             return redirect(to='/friends')
         return render(request, 'friends/index.html', context)
+'''

@@ -12,11 +12,11 @@
 <body class="container">
     <h1 class="display-4 text-primary">{{title}}</h1>
     <p class="h-5 mt-4">{{message|safe}}</p>
-    <form action="{% url 'index' %}"  method='post'>
+    {% comment %} <form action="{% url 'index' %}"  method='post'>
         {% csrf_token %}
         {{ form }}
         <input type='submit' value='クリック'>
-    </form>
+    </form> {% endcomment %}
     <table class="table">
         <tr>
             <th>ID</th>
