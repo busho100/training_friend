@@ -1,15 +1,6 @@
-{% load static %} 
-<!doctype html>
-<html lang="ja">
+{% extends './base.html'%}
 
-<head>
-    <meta charset="utf-8">
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
-        crossorigin='anonymous'>
-    <style>body{padding-top:80px;}</style> 
-</head>
-<body class="container">
+    {% block content %}
     <h1 class="display-4 text-primary">{{title}}</h1>
     <form action="{% url 'edit' id %}"  method='post'>
         {% csrf_token %}
@@ -21,6 +12,4 @@
             </tr></th></td>
         </table>
     </form> 
-    
-</body>
-</html>
+    {% endblock %}   
