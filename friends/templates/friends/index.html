@@ -1,0 +1,42 @@
+{% load static %} 
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+        crossorigin='anonymous'>
+    <style>body{padding-top:80px;}</style> 
+</head>
+<body class="container">
+    <h1 class="display-4 text-primary">{{title}}</h1>
+    <p class="h-5 mt-4">{{message|safe}}</p>
+    <form action="{% url 'index' %}"  method='post'>
+        {% csrf_token %}
+        {{ form }}
+        <input type='submit' value='クリック'>
+    </form>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>性別</th>
+            <th>メール</th>
+            <th>年齢</th>
+            <th>誕生日</th>
+        </tr>
+    {% for item in data %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{% if item.male == True %}男性{% endif %} 
+            {% if item.male == False %}女性{% endif %} </td>
+            <td>{{item.mail}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.birthday}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
