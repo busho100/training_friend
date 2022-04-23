@@ -1,7 +1,8 @@
 from django import forms
+from .models import Friend
 
 class HelloForm(forms.Form):
-    ''' id = forms.IntegerField(label='ID') '''
+    ''' id = forms.IntegerField(label='ID') ''' 
 
     name = forms.CharField(label='氏名',\
         widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -16,4 +17,9 @@ class HelloForm(forms.Form):
         widget=forms.NumberInput(attrs={'class':'form-control'}))
 
     birthday = forms.DateField(label = '誕生日',\
-        widget=forms.DateInput(attrs={'class':'form-controle'}))
+        widget=forms.DateInput(attrs={'class':'form-controle'}))  
+
+class FriendForm(forms.ModelForm):
+    class Meta:
+        model = Friend
+        fields = ['name','mail','male','age','birthday',]
