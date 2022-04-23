@@ -35,3 +35,18 @@ def create(request):
         'form':FriendForm(),
     }
     return render(request, 'friends/create.html', context)
+
+def edit(request, num):
+    obj = Friend.objects.get(id=num)
+    if (request.method == 'POST'):
+        friend = FriendForm(request.POST, instance=obj) 
+        friend.save()
+        return redirect(to='/friends')
+
+    context = {
+        'title':'Hello Friend',
+        'id':num,
+        'form':FriendForm(instance=obj),
+    }
+
+    return render(request, 'friends/edit.html', context)
