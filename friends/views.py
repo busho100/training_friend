@@ -50,3 +50,17 @@ def edit(request, num):
     }
 
     return render(request, 'friends/edit.html', context)
+
+def delete(request, num):
+    friend = Friend.objects.get(id=num)
+    if (request.method == 'POST'):
+        friend.delete()
+        return redirect(to='/friends')
+
+    context = {
+        'title':'Hello Friend',
+        'id':num,
+        'obj':friend,
+    }
+    return render(request, 'friends/delete.html', context)
+

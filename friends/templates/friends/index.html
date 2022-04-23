@@ -41,6 +41,7 @@
             <td>{{item.birthday}}</td> {% endcomment %}
             <td>{{item}}</td>
             <td><a href={% url 'edit' item.id %}>編集</a></td>
+            <td><a href={% url 'delete' item.id %}>削除</a></td>
         </tr>
     {% endfor %}
     </table>   

@@ -1,0 +1,35 @@
+{% load static %} 
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+        crossorigin='anonymous'>
+    <style>body{padding-top:80px;}</style> 
+</head>
+<body class="container">
+    <h1 class="display-4 text-primary">{{title}}</h1>
+    <p>※以下のデータを削除します。</p>
+    <table class='table'>
+        <tr><th>ID</th><td>{{obj.id}}</td></tr>
+        <tr><th>氏名</th><td>{{obj.name}}</td></tr>
+        <tr><th>性別</th><td>
+            {% if obj.male == True %}男性{% endif %} 
+            {% if obj.male == False %}女性{% endif %} </td></tr>
+        <tr><th>メール</th><td>{{obj.mail}}</td></tr>
+        <tr><th>年齢</th><td>{{obj.age}}</td></tr>
+        <tr><th>生年月日</th><td>{{obj.birthday}}</td></tr> 
+    <form action="{% url 'delete' id %}"  method='post'>
+        {% csrf_token %}
+        <tr><th></th><td>
+                <input type='submit' value='クリック'
+                    class="btn btn-primary mt-2">
+        </td></tr>
+    </form>
+    </table>
+    
+    
+</body>
+</html>
